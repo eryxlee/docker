@@ -1,0 +1,11 @@
+deb http://mirrors.ustc.edu.cn/ubuntu/ utopic main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ utopic-security main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ utopic-updates main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ utopic-proposed main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ utopic-backports main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ utopic main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ utopic-security main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ utopic-updates main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ utopic-proposed main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ utopic-backports main restricted universe multiverse
+
