@@ -1,0 +1,11 @@
+phpfpm:
+    build: image/phpfpm
+    restart: always
+    volumes:
+        - conf/phpfpm/supervisor/conf.d:/etc/supervisor/conf.d
+        - conf/phpfpm/php-fpm.conf:/etc/php-fpm.conf
+        - conf/phpfpm/php:/etc/php
+        - log/phpfpm:/var/log/php-fpm
+        - data/html:/usr/share/nginx/html
+    ports:
+        - "9000:9000"
