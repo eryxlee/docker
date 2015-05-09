@@ -3,11 +3,11 @@ FROM centos:7
 MAINTAINER Eryx Lee <eryx.lee0901@gmail.com>
 
 RUN groupadd -r www-data -g 433 && \
-useradd -u 431 -r -g www-data -s /sbin/nologin -c "www user" www-data 
+useradd -u 431 -r -g www-data -s /sbin/nologin -c "www user" www-data
 
-RUN yum -y update \
-&& yum -y remove php php-\* \
-&& yum -y install  libxml2 libxml2-devel \
+RUN yum -y update && yum -y remove php php-\* \
+&& yum -y install wget tar gcc gcc-c++ make \
+                  libxml2 libxml2-devel \
                   libxslt-devel \
                   zlib zlib-devel \
                   glibc glibc-devel \
@@ -21,16 +21,11 @@ RUN yum -y update \
                   libevent-devel \
                   libtool-ltdl libtool-ltdl-devel \
                   libicu libicu-devel \
-                  libmcrypt libmcrypt-devel \
-                  mhash mhash-devel \
-                  mcrypt \
-                  gearmand \
                   pcre pcre-devel \
                   mysql-devel \
-                  php php-cli php-common php-devel php-fpm php-gd \
-                  php-mbstring php-mysql php-pdo php-pear php-pecl-memcache \
-                  php-pecl-redis php-xml php-xmlrpc \
-                  php-mcrypt php-bcmath php-mhash php-mcrypt \
+                  php php-bcmath php-cli php-common php-devel php-fpm php-gd \
+                  php-intl php-mbstring php-mysql php-pdo php-pear php-pecl-memcache \
+                  php-xml php-xmlrpc   \
                   git \
                   python-setuptools
 
