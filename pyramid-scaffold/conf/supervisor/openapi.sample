@@ -1,0 +1,23 @@
+[program:openapi]
+environment=PYTHONPATH="/source/opencore:/source/openapi"
+command=gunicorn --paster openapi.ini
+process_name=openapi
+numprocs=1
+directory=/source/openapi
+umask=022
+priority=1
+autostart=true
+autorestart=true
+startsecs=15
+startretries=5
+user=root
+redirect_stderr=false
+stdout_logfile=/log/supervisor/openapi-out.log
+stdout_logfile_maxbytes=1MB
+stdout_logfile_backups=10
+stdout_capture_maxbytes=1MB
+stderr_logfile=/log/supervisor/openapi-err.log
+stderr_logfile_maxbytes=1MB
+stderr_logfile_backups=10
+stderr_capture_maxbytes=1MB
+
