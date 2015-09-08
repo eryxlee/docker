@@ -2,7 +2,9 @@ app:
     build: app
     restart: on-failure:10
     volumes:
-        - app:/code
+        - ./source:/source
+        - ./log:/log
+        - ./conf/supervisor:/etc/supervisor/conf.d
     ports:
         - "8888:6543"
     links:
