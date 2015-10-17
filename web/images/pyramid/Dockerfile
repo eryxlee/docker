@@ -22,11 +22,11 @@ RUN apt-get update && \
 
 # install python pip, python-pip is out of date
 ADD get-pip.py /source/get-pip.py
-RUN python /source/get-pip.py --trusted-host pypi.douban.com -i http://pypi.douban.com/simple
+RUN python /source/get-pip.py --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple
 
 # add requirements.txt and install
 ADD requirements.txt /source/requirements.txt
-RUN pip install -r /source/requirements.txt  --trusted-host pypi.douban.com -i http://pypi.douban.com/simple
+RUN pip install -r /source/requirements.txt  --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple
 
 ADD supervisor.conf /etc/supervisor/supervisord.conf
 
