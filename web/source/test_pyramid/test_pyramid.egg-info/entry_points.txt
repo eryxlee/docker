@@ -1,0 +1,5 @@
+      [paste.app_factory]
+      main = test_pyramid:main
+      [console_scripts]
+      initialize_test_pyramid_db = test_pyramid.scripts.initializedb:main
+      
