@@ -1,3 +1,4 @@
+ #!/bin/bash
  sudo yum remove docker \
                   docker-client \
                   docker-client-latest \
@@ -25,9 +26,3 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
 EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
-
-作者：彭阿三
-链接：https://juejin.cn/post/6955296519964753928
-来源：掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
