@@ -1,8 +1,8 @@
 # start with a base image
-FROM ubuntu:14.10
+FROM ubuntu:15.10
 
 # change default source list
-ADD sources.list /etc/apt/sources.list
+#ADD sources.list /etc/apt/sources.list
 
 # change default UTC timezone to Asia/Shanghai
 # use -v /etc/localtime:/etc/localtime instead if available

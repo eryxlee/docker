@@ -1,3 +1,5 @@
 [mysqld]
 key_buffer_size = 300M
 skip-name-resolve
+
+innodb_use_native_aio=0
