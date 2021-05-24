@@ -10,7 +10,7 @@ services:
             - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
             - $PWD/conf/nginx/conf.d/:/etc/nginx/conf.d/:ro
             - $PWD/logs:/var/log/nginx/
-            - $PWD/code/frontend/:/usr/share/nginx/html/
+            - $PWD/html/:/usr/share/nginx/html/
 
     mysql:
         image: mysql:5
