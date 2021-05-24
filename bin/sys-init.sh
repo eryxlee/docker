@@ -9,4 +9,4 @@ sudo sed -i '/swap/s/^\(.*\)$/#\1/g' /etc/fstab
 # 关闭selinux
 sudo setenforce 0
 # 关闭dnsmasq(否则可能导致docker容器无法解析域名)
-sudo service dnsmasq stop && systemctl disable dnsmasq
+sudo systemctl stop dnsmasq && systemctl disable dnsmasq

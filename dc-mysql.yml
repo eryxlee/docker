@@ -1,0 +1,56 @@
+version: '3'
+
+services: 
+    nginx:
+        image: nginx:1.15
+        container_name: nginx
+        ports:
+            - 80:80
+        volumes:
+            - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
+            - $PWD/conf/nginx/conf.d/:/etc/nginx/conf.d/:ro
+            - $PWD/logs:/var/log/nginx/
+            - $PWD/code/frontend/:/usr/share/nginx/html/
+
+    mysql:
+        image: mysql:5
+        container_name: mysql
+        restart: always
+        volumes:
+            - mysql:/var/lib/mysql:rw
+            - $PWD/conf/mysql:/etc/mysql/conf.d:ro
+        user: mysql
+        expose:
+            - "3306"
+        ports:
+            - "3306:3306"
+        networks:
+            - backend
+        environment:
+            - MYSQL_ROOT_PASSWORD=123456
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "200k"
+                max-file: "10"
+
+    redis:
+        image: redis:alpine
+        container_name: redis
+        restart: always
+        volumes:
+            - ./data/redis:/data
+            - ./conf/redis/redis.conf:/etc/redis.conf
+        expose:
+            - "6379"
+        ports:
+            - "6379:6379"
+        networks:
+            - backend
+        command: redis-server /etc/redis.conf
+
+volumes:
+    mysql:
+
+networks:
+    backend:

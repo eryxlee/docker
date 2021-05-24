@@ -13,7 +13,7 @@ sudo yum-config-manager \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
 
-sudo yum install docker-ce
+sudo yum install -y docker-ce
 
 
 sudo mkdir -p /etc/docker
@@ -26,3 +26,5 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
 EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+sudo pip install --upgrade pip
+sudo pip install  docker-compose
