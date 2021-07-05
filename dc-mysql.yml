@@ -2,16 +2,29 @@ version: '3'
 
 services: 
     nginx:
-        image: nginx:1.15
+        image: nginx
         container_name: nginx
-        ports:
-            - 80:80
         volumes:
             - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
             - $PWD/conf/nginx/conf.d/:/etc/nginx/conf.d/:ro
             - $PWD/logs:/var/log/nginx/
             - $PWD/html/:/usr/share/nginx/html/
-
+        ports:
+          - 8080:80
+          - 443:443
+        networks:
+            - backend
+        links:
+            - flask
+    flask:
+        image: daoxi
+        ports:
+            - "8000:8000"
+        networks:
+            - backend
+        links:
+            - redis
+            - mysql
     mysql:
         image: mysql:5
         container_name: mysql
