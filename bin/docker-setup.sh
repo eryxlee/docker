@@ -7,13 +7,13 @@
                   docker-latest-logrotate \
                   docker-logrotate \
                   docker-engine
-sudo yum install -y yum-utils
+sudo yum install -y yum-utils device-mapper-persistent-data  lvm2
 
 sudo yum-config-manager \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
 
-sudo yum install -y docker-ce
+sudo yum install -y docker-ce docker-ce-cli containerd.io
 
 
 sudo mkdir -p /etc/docker
@@ -26,5 +26,4 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
 EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
-sudo pip install --upgrade pip
-sudo pip install  docker-compose
+sudo systemctl enable docker
