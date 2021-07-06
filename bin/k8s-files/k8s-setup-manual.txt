@@ -1,0 +1,54 @@
+# 下载管理节点中用到的6个docker镜像，你可以使用docker images查看到
+# 这里需要大概两分钟等待，会卡在[preflight] You can also perform this action in beforehand using ''kubeadm config images pull
+kubeadm init --image-repository registry.aliyuncs.com/google_containers --kubernetes-version v1.16.0 --apiserver-advertise-address 192.168.99.104 --pod-network-cidr=10.244.0.0/16 --token-ttl 0
+
+    [WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recommended driver is "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/
+    [WARNING FileExisting-tc]: tc not found in system path
+    [WARNING SystemVerification]: this Docker version is not on the list of validated versions: 20.10.7. Latest validated version: 18.09
+
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 10.206.0.7:6443 --token 1bbe58.293nltxbg4ja9zts \
+    --discovery-token-ca-cert-hash sha256:acfbff773a00bd1c3214871189f013f0a38ad4d9b82e344ea57be99e4df95276
+
+kubeadm token create --print-join-command
+kubeadm join 10.206.0.7:6443 --token fxjjwy.4q7iwuzrfwyvmbkl     --discovery-token-ca-cert-hash sha256:acfbff773a00bd1c3214871189f013f0a38ad4d9b82e344ea57be99e4df95276
+
+kubectl get nodes
+NAME            STATUS     ROLES    AGE     VERSION
+vm-0-7-centos   NotReady   master   6m28s   v1.16.0
+
+
+
+master：
+wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl apply -f kube-flannel.yml
+kubectl get nodes
+
+
+
+dashboard:
+# 部署flannel服务
+$ kubectl apply -f ./kube-dashboard.yaml
+
+# 如果部署出现问题可通过如下命令查看日志
+$ kubectl logs \
+    kubernetes-dashboard-c9fb67ffc-nknpj \
+    --namespace=kubernetes-dashboard
+$ kubectl describe pod \
+    kubernetes-dashboard-c9fb67ffc-nknpj \
+    --namespace=kubernetes-dashboard
+
+kubectl get svc -n kubernetes-dashboard
+
